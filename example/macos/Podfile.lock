@@ -1,0 +1,29 @@
+PODS:
+  - FlutterMacOS (1.0.0)
+  - NPC (1.0.4)
+  - npcx (0.0.1):
+    - FlutterMacOS
+    - NPC
+
+DEPENDENCIES:
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - npcx (from `Flutter/ephemeral/.symlinks/plugins/npcx/macos`)
+
+SPEC REPOS:
+  trunk:
+    - NPC
+
+EXTERNAL SOURCES:
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  npcx:
+    :path: Flutter/ephemeral/.symlinks/plugins/npcx/macos
+
+SPEC CHECKSUMS:
+  FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
+  NPC: d5c4456cb47e6140e8e11c2ef9d968f281ca8ca1
+  npcx: 0b355d916ca98f26dcb8760e9e50c7bad7b3a4d9
+
+PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c
+
+COCOAPODS: 1.11.2
