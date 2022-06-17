@@ -1,4 +1,3 @@
-
 import 'package:flutter/services.dart';
 import 'package:npc/npc.dart';
 export 'package:npc/npc.dart';
@@ -60,7 +59,7 @@ class Npcx {
   static const _name = "com.neutronstarer.npcx";
 
   static final _messenger = () {
-    final v = ServicesBinding.instance!.defaultBinaryMessenger;
+    final v = ServicesBinding.instance.defaultBinaryMessenger;
     v.setMessageHandler(_name, (bytes) {
       try {
         final map = _codec.decodeMessage(bytes) as Map<String, dynamic>;
@@ -80,6 +79,7 @@ class Npcx {
             param: map["param"],
             error: map["error"]));
       } catch (_) {}
+      return null;
     });
     return v;
   }();

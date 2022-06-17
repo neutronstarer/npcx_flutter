@@ -25,7 +25,7 @@ public class NpcxPlugin: NPC, FlutterPlugin {
     private weak var messenger: FlutterBinaryMessenger?
     private let codec = FlutterJSONMessageCodec.sharedInstance()
     
-    private init(_ name: String, _ messenger: FlutterBinaryMessenger){
+    fileprivate init(_ name: String, _ messenger: FlutterBinaryMessenger){
         self.name = name
         self.messenger = messenger
         super.init(nil)
@@ -56,13 +56,24 @@ public class NpcxPlugin: NPC, FlutterPlugin {
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         // Do not use channel for preventing circular references
-        let name = "com.neutronstarer.npcx"
         let messenger = registrar.messenger()
-        let instance = NpcxPlugin(name, messenger)
-        objc_setAssociatedObject(messenger, &AssociatedKeys.npcx, instance, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        let _ = npcxOf(messenger: messenger)
     }
 }
 
+private func npcxOf(messenger: FlutterBinaryMessenger?)->NpcxPlugin?{
+    guard let messenger = messenger else {
+        return nil;
+    }
+
+    if let instance = objc_getAssociatedObject(messenger, &AssociatedKeys.npcx) as? NpcxPlugin {
+        return instance;
+    }
+    let name = "com.neutronstarer.npcx"
+    let instance = NpcxPlugin(name, messenger)
+    objc_setAssociatedObject(messenger, &AssociatedKeys.npcx, instance, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    return instance
+}
 
 extension FlutterAppDelegate {
     func npcx() -> NpcxPlugin? {
@@ -72,14 +83,15 @@ extension FlutterAppDelegate {
 
 @objc public extension FlutterViewController {
     func npcx() -> NpcxPlugin? {
-        return engine?.npcx()
+        return npcxOf(messenger: binaryMessenger)
     }
 }
 
 @objc public extension FlutterEngine {
     func npcx() -> NpcxPlugin? {
-        let messenger = binaryMessenger
-        return objc_getAssociatedObject(messenger, &AssociatedKeys.npcx) as? NpcxPlugin
+        return npcxOf(messenger: binaryMessenger)
     }
 }
+
+//@objc public extension
 

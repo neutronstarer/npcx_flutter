@@ -11,6 +11,10 @@ import io.flutter.plugin.common.JSONMessageCodec
 import org.json.JSONObject
 import java.nio.ByteBuffer
 
+fun FlutterEngine.npcx(): NpcxPlugin?{
+  return plugins.get(NpcxPlugin::class.java) as? NpcxPlugin
+}
+
 /** NpcxPlugin */
 class NpcxPlugin: NPC(null), FlutterPlugin {
 
@@ -79,3 +83,4 @@ class NpcxPlugin: NPC(null), FlutterPlugin {
   }
 
 }
+

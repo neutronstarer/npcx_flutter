@@ -2,6 +2,7 @@ package com.neutronstarer.npcx_example
 
 import android.os.Bundle
 import com.neutronstarer.npcx.NpcxPlugin
+import com.neutronstarer.npcx.npcx
 import io.flutter.embedding.android.FlutterActivity
 import java.util.*
 
@@ -9,7 +10,7 @@ class MainActivity: FlutterActivity(
 ) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val npcx = NpcxPlugin.of(engine = flutterEngine)
+        val npcx = flutterEngine?.npcx()
         setup(npcx = npcx)
     }
 
