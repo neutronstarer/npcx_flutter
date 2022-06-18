@@ -1,11 +1,11 @@
 name: npcx
 description: Near Procedure Call between flutter and native.
-version: 1.0.0
-homepage:
+version: 0.0.2
+homepage: https://github.com/neutronstarer/npcx_flutter
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: 
+  flutter: ">=1.10.0"
 
 dependencies:
   npc: ^1.0.0
