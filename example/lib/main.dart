@@ -54,7 +54,11 @@ class _MyHomePageState extends State<MyHomePage> {
         _cancelable = Cancelable();
         _text = 'start download to $path';
       });
-      final r = await Npcx.deliver('download', param: path, cancelable: _cancelable!, timeout: Duration(seconds: int.parse(_timeout)), onNotify: (param) async {
+      final r = await Npcx().deliver('download',
+          param: path,
+          cancelable: _cancelable!,
+          timeout: Duration(seconds: int.parse(_timeout)),
+          onNotify: (param) async {
         setState(() {
           _text = param.toString();
         });
@@ -66,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } catch (e) {
       setState(() {
         _text = e.toString();
-      _cancelable = null;
+        _cancelable = null;
       });
     }
   }
@@ -113,7 +117,9 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _click,
         tooltip: _cancelable == null ? 'download' : 'cancel',
-        child: _cancelable == null ? const Icon(Icons.download) : const Icon(Icons.cancel),
+        child: _cancelable == null
+            ? const Icon(Icons.download)
+            : const Icon(Icons.cancel),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

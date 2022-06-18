@@ -1,6 +1,6 @@
 name: npcx
 description: Near Procedure Call between flutter and native.
-version: 0.0.1
+version: 1.0.0
 homepage:
 
 environment:
@@ -8,14 +8,15 @@ environment:
   flutter: 
 
 dependencies:
-  npc:
+  npc: ^1.0.0
+  plugin_platform_interface: ^2.0.0
   flutter:
     sdk: flutter
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: 
+  flutter_lints: ^2.0.0 
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
